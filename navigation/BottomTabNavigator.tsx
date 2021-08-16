@@ -53,7 +53,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: 'Recent Posts' }}
+        options={{ headerTitle: 'Recent HackerNew Posts' }}
       />
     </TabOneStack.Navigator>
   );

@@ -18,19 +18,15 @@ reader app for HackerNews.
  - React Native
  - TypeScript
  - Expo
- - React Context Api
  - Date-fns (_date_ utility library)
 
 ## Color Palette
 
-![Color Palette](assets/images/colorpalette.png)
+![Color Palette]('assets/images/colorpalette.png')
+
 ## Mockup
 
-![Mockup](assets/images/mockup.png)
-
-## Trello 
-
-https://trello.com/b/EMZcHUQg/postviewer
+...
 
 ## Test locally
 
