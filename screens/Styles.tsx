@@ -18,10 +18,7 @@ import {
       height: 1,
       width: '80%',
     },
-    separatorLine: {
-      height: 1,
-      backgroundColor: 'white',
-    },
+   
   });
   
 export default Styles;

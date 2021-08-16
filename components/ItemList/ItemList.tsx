@@ -6,11 +6,12 @@ import {
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { useNavigation } from '@react-navigation/core';
 import {differenceInMinutes} from 'date-fns';
+import Icon from '../Icons/Ionicons';
 import { View, Text } from '../Themed';
 import { useData } from '../../context/DataContext';
 import Styles from './Styles';
 
-const COLOR_PALETTE = ["#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe","#a2d2ff", "#49b6ff", "#eb4b98"]
+const COLOR_PALETTE = ["#fae0e4", "#f7cad0", "#f9bec7", "#fbb1bd","#ff99ac"]
 
 
 const ItemList = (props:any) => {
@@ -21,14 +22,14 @@ const ItemList = (props:any) => {
     if(url === null || url === undefined){
       Alert.alert(
         `😟`,
-        "Url not found..." ,
+        "This URL is not available..." ,
         [
           {
-            text: "Cancel",
+            text: "Go Back",
             onPress: () => console.log("Cancel Pressed"),
             style: "cancel"
           },
-          { text: "OK", onPress: () => console.log("OK Pressed") }
+          { text: "OK 😟", onPress: () => console.log("OK Pressed") }
         ]
       );
     } else {
@@ -43,7 +44,7 @@ const ItemList = (props:any) => {
     return (
       <TouchableOpacity onPress={props.handleDelete} activeOpacity={0.6}>
         <View style={Styles.deleteBox}>
-         <Text>Delete Item</Text>
+        <Icon name="trash" color={'red'} size={50} />
         </View>
       </TouchableOpacity>
     );
@@ -59,13 +60,13 @@ const ItemList = (props:any) => {
         renderRightActions={rightSwipe}
         >
       <View style={{...Styles.container, backgroundColor: COLOR_PALETTE[props.i % COLOR_PALETTE.length]}}>
-        <Text>{props.data.story_title || props.data.title}</Text>
+        <Text style={Styles.titleText}>{(props.data.story_title || props.data.title) || 'Not found'}</Text>
         <Text>{props.data.url === null ? 
         `Available URL: 🚫` : `Available URL: ✅`}</Text>
         <Text>Post preview: {props.data.comment_text?.slice(0,100)} ... </Text>
         <View style={{...Styles.subContainer, backgroundColor: COLOR_PALETTE[props.i % COLOR_PALETTE.length]}}>
         <Text>{props.data.author.toUpperCase()}.</Text>
-        <Text>Created:  {differenceInMinutes(new Date(), new Date(props.data.created_at))} min.</Text>
+        <Text>Created at:  {differenceInMinutes(new Date(), new Date(props.data.created_at))} min.</Text>
         </View>
      
       </View>

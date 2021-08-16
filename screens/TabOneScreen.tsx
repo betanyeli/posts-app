@@ -31,6 +31,7 @@ export default function TabOneScreen() {
       .catch(e => e)
   }
 
+
   return (
     <View style={Styles.container}>
       <FlatList
@@ -42,9 +43,9 @@ export default function TabOneScreen() {
           i={index}
           handleDelete={() => handleDelete(index)} />
         }}
-        ItemSeparatorComponent={() => {
-          return <View style={Styles.separatorLine}></View>;
-        }}
+        // ItemSeparatorComponent={() => {
+        //   return <View style={Styles.separatorLine}></View>;
+        // }}
         refreshing={loading}
         onRefresh={getDataFetch}
       />
