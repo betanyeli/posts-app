@@ -1,14 +1,16 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image} from 'react-native';
 import { Text, View } from '../components/Themed';
-import WebView_ from '../WebView_/WebView_';
+
+
 
 export default function TabTwoScreen() {
-// const { url } = route.params
-// console.log("route", route)
+
   return (
     <View style={styles.container}>
-    <Text>Holi soy yo jeje </Text>
+      <Image source={require('../assets/images/postviewer.png')}
+       />
+    <Text>Develop with love by Beta</Text>
     </View>
   );
 }

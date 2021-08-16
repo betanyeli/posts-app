@@ -71,7 +71,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Web View' }}
+        options={{ headerTitle: 'Dev Info' }}
       />
     </TabTwoStack.Navigator>
   );

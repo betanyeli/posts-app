@@ -5,12 +5,16 @@ type dataContextType = {
     data: Array<[]>;
     saveData : (data: any) => void;
     loading: boolean;
+    updateUrl: (url: string) => void;
+    url: string;
 }; // types
 
 const dataContextDefaultValues: dataContextType = {
     data: [],
     loading: false,
-    saveData: (data: any) => {}
+    saveData: (data: any) => {},
+    updateUrl: (url: string) => {},
+    url:""
 }; // context default values
 
 const DataContext = createContext<dataContextType>(dataContextDefaultValues);
@@ -27,6 +31,7 @@ type Props = {
 export function DataProvider({ children }: Props) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false)
+    const [url, setUrl] = useState("")
 
     const saveData = (data: []) => {
         setLoading(true)
@@ -34,10 +39,16 @@ export function DataProvider({ children }: Props) {
         setLoading(false)
     }
 
+    const updateUrl = (url: string) => {
+        setUrl(url)
+    }
+
     const value = {
         data,
         saveData,
-        loading
+        loading,
+        updateUrl,
+        url
     };
 
     return (

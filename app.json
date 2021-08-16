@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PostsApp",
-    "slug": "PostsApp",
+    "name": "PostViewer",
+    "slug": "PostViewer",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/postsquare.png",
@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffc8dd"
     },
     "updates": {

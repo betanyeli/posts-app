@@ -6,6 +6,7 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  WebView: undefined;
 };
 
 export type BottomTabParamList = {
@@ -20,3 +21,7 @@ export type TabOneParamList = {
 export type TabTwoParamList = {
   TabTwoScreen: undefined;
 };
+
+export type WebViewParamList = {
+WebView_ : { url: string}
+}

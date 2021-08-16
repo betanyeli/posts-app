@@ -4,9 +4,10 @@ import {
   Alert,
 } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/core';
 import {differenceInMinutes} from 'date-fns';
 import { View, Text } from '../Themed';
+import { useData } from '../../context/DataContext';
 import Styles from './Styles';
 
 const COLOR_PALETTE = ["#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe","#a2d2ff", "#49b6ff", "#eb4b98"]
@@ -15,7 +16,8 @@ const COLOR_PALETTE = ["#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe","#a2d2ff", "#4
 const ItemList = (props:any) => {
   const navigation = useNavigation();
 
-  const handlePress = (url: any) => {
+  const {updateUrl} = useData();
+  const handlePress =  (url: any) => {
     if(url === null || url === undefined){
       Alert.alert(
         `😟`,
@@ -30,8 +32,8 @@ const ItemList = (props:any) => {
         ]
       );
     } else {
-      console.log("url desde item", url)
-      return navigation.navigate('TabTwo', {url: url})
+      updateUrl(url)
+      navigation.navigate('WebView')
     }
     
   }
@@ -51,7 +53,8 @@ const ItemList = (props:any) => {
   return (
     
     <React.Fragment>
-    <TouchableOpacity onPress={() => handlePress(props.data.url)} activeOpacity={0.6}>
+    
+  <TouchableOpacity onPress={() => handlePress(props.data.url)} activeOpacity={0.6}>
     <Swipeable 
         renderRightActions={rightSwipe}
         >
@@ -65,7 +68,6 @@ const ItemList = (props:any) => {
         <Text>Created:  {differenceInMinutes(new Date(), new Date(props.data.created_at))} min.</Text>
         </View>
      
-        
       </View>
     </Swipeable>
     </TouchableOpacity>
