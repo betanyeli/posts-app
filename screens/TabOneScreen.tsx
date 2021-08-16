@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Image } from 'react-native';
 import Styles from './Styles';
 import {  View } from '../components/Themed';
 import ItemList from '../components/ItemList/ItemList';
@@ -31,12 +31,15 @@ export default function TabOneScreen() {
       .catch(e => e)
   }
 
-  
-
   return (
     <View style={Styles.container}>
+      {/* <Image
+        style={{height: 100, width: 150, backgroundColor: '#fff'}}
+        source={require('../assets/images/postviewer.png')}
+      /> */}
       <FlatList
         data={data}
+        keyExtractor={(item) => item.toString()}
         renderItem={({ item, index }) => {
           return <ItemList 
           data={item}

@@ -12,6 +12,9 @@ const Styles = StyleSheet.create({
       justifyContent: 'center',
       padding: 16,
     },
+    subContainer: {
+      flexDirection: 'row', justifyContent: 'space-between'
+    },
     deleteBox: {
       backgroundColor: 'red',
       justifyContent: 'center',

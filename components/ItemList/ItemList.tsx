@@ -1,23 +1,25 @@
 import React from 'react';
 import {
-  Animated,
   TouchableOpacity,
   Alert,
-  Linking
 } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { useNavigation } from '@react-navigation/native';
+import {differenceInMinutes} from 'date-fns';
 import { View, Text } from '../Themed';
 import Styles from './Styles';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 
-const COLOR_PALETTE = ["#03071E", "#370617", "#6a040f", "#9d0208","#d00000", "#dc2f02", "#e85d04", "#f48c06", "#faa307", "#ffba08"]
+const COLOR_PALETTE = ["#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe","#a2d2ff", "#49b6ff", "#eb4b98"]
 
 
-const ItemList = (props: any) => {
-  const handlePress = async(url: any) => {
-    if(url === null){
+const ItemList = (props:any) => {
+  const navigation = useNavigation();
+
+  const handlePress = (url: any) => {
+    if(url === null || url === undefined){
       Alert.alert(
         `😟`,
-        "Url not found" ,
+        "Url not found..." ,
         [
           {
             text: "Cancel",
@@ -28,7 +30,8 @@ const ItemList = (props: any) => {
         ]
       );
     } else {
-      await Linking.openURL(url)
+      console.log("url desde item", url)
+      return navigation.navigate('TabTwo', {url: url})
     }
     
   }
@@ -43,15 +46,30 @@ const ItemList = (props: any) => {
       </TouchableOpacity>
     );
   };
+
+  
   return (
+    
+    <React.Fragment>
     <TouchableOpacity onPress={() => handlePress(props.data.url)} activeOpacity={0.6}>
     <Swipeable 
-        renderRightActions={rightSwipe}>
+        renderRightActions={rightSwipe}
+        >
       <View style={{...Styles.container, backgroundColor: COLOR_PALETTE[props.i % COLOR_PALETTE.length]}}>
-        <Text>Details:  {props.data.author}.</Text>
+        <Text>{props.data.story_title || props.data.title}</Text>
+        <Text>{props.data.url === null ? 
+        `Available URL: 🚫` : `Available URL: ✅`}</Text>
+        <Text>Post preview: {props.data.comment_text?.slice(0,100)} ... </Text>
+        <View style={{...Styles.subContainer, backgroundColor: COLOR_PALETTE[props.i % COLOR_PALETTE.length]}}>
+        <Text>{props.data.author.toUpperCase()}.</Text>
+        <Text>Created:  {differenceInMinutes(new Date(), new Date(props.data.created_at))} min.</Text>
+        </View>
+     
+        
       </View>
     </Swipeable>
     </TouchableOpacity>
+    </React.Fragment>
   );
 };
 
